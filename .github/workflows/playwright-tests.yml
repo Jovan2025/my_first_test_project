@@ -23,11 +23,11 @@ jobs:
         with:
           node-version: '20'
 
-      # Step 2: Set up JDK 17 (adjust if you're using a different version)
-      - name: Set up JDK 17
+      # Step 2: Set up JDK 24 (adjust if you're using a different version)
+      - name: Set up JDK 24
         uses: actions/setup-java@v3
         with:
-          java-version: '17'
+          java-version: '24'
           distribution: 'adopt'
 
       # Step 3: Install Maven 3.9.9
@@ -35,7 +35,7 @@ jobs:
         uses: s4u/setup-maven-action@v1.7.0
         with:
           checkout-fetch-depth: 0
-          java-version: 17
+          java-version: 24
           java-distribution: temurin
           maven-version: 3.9.9
 
