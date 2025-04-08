@@ -1,0 +1,7 @@
+3786 - UAT2: Add Security Sub Type ID 22 to S&P CPV connector 5.7
+3181 - UAT : Notes - Show tags in different colors 4.7
+3171 - UAT : Company.Products tab - Collapsable view to hide RV per unit, Contribution $ and Contribution % 30.6
+3169 - UAT : Company.Products tab - RHS  -/+ button to be inline with last year column 4.7
+3162 - UAT : Enhancements to Company Raw Financials Data Tab 6.7
+3276 - UAT: Companies Filters - Allow Coverage to be applied on more than one filter 2.7
+3815 - SD: Disable the button "Generate Analysis" for the "cas.basiccompanyproducts" role 3.7
