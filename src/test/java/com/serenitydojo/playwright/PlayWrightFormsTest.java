@@ -1,18 +1,15 @@
 package com.serenitydojo.playwright;
 
 import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
-
 import java.net.URISyntaxException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-
 import com.microsoft.playwright.Browser;
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.Playwright;
@@ -98,7 +95,7 @@ public class PlayWrightFormsTest {
 
 
             var errorMessage = page.getByRole(AriaRole.ALERT).getByText(fieldName + " is required");
-            
+
             //check the error message for that field
             assertThat(errorMessage).isVisible();
         
