@@ -64,8 +64,8 @@ public class PlaywrightWaitsTest {
         void shouldShowAllProductNames() {
             List<String> productNames = page.getByTestId("product-name").allInnerTexts();
             Assertions.assertThat(productNames).contains("Pliers", "Bolt Cutters", "Hammer");  
-        }
-   
+    }
+
     }
     @Nested
     class AutomaticWaits {
@@ -92,7 +92,6 @@ public class PlaywrightWaitsTest {
             page.getByRole(AriaRole.MENUBAR).getByText("Power Tools").click();
 
             page.waitForSelector(".card");
-        
 
             var filteredProducts = page.getByTestId("product-name").allInnerTexts();
 
@@ -102,4 +101,42 @@ public class PlaywrightWaitsTest {
 
 
     }
+    @Nested
+    class WaitingForAPICalls {
+        @Test
+        void sortByDescendingPrice() {
+            page.navigate("https://practicesoftwaretesting.com/");
+
+            // Sort by descending price 
+
+            //GET
+	https://api.practicesoftwaretesting.com/products?sort=price,desc&between=price,1,100&page=0
+    
+            page.waitForResponse("**/products?sort**",
+                () -> {
+                    page.getByTestId("sort").selectOption("Price (High - Low)");
+                    
+                });
+
+
+            //Find all the prices on the page
+            var productPrices = page.getByTestId("product-price")
+                    .allInnerTexts()
+                    .stream()
+                    .map(WaitingForAPICalls::extractPrice)
+                    .toList();
+
+            // Are the prices in the correct order
+            System.out.println("Product prices: " + productPrices);
+            Assertions.assertThat(productPrices)
+                    .isNotEmpty()      
+                    .isSortedAccordingTo(Comparator.reverseOrder());
+
+        }
+
+        private static Double extractPrice(String price) {
+            return Double.parseDouble(price.replace("$", ""));
+        }
+    }
+
 }

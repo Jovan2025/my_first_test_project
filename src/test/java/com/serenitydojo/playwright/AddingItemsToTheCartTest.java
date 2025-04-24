@@ -31,6 +31,7 @@ Page page;
     void setUp() {
         browserContext = browser.newContext();
         page = browserContext.newPage();
+        page.setViewportSize(1920, 1080);
         page.navigate("https://practicesoftwaretesting.com/");
     }
 
@@ -59,7 +60,7 @@ Page page;
 
         
         List<String> productNames = page.getByTestId("product-name").allTextContents();
-        Assertions.assertThat(productNames).allMatch(name -> name.contains("Hammer"));
+        Assertions.assertThat(productNames).allMatch(name -> name.contains("Pliers"));
 
         Locator outOfStockItem = page.locator(".card")
             .filter(new Locator.FilterOptions().setHasText("Out of stock"))
