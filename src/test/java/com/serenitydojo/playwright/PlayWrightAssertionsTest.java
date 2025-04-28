@@ -5,6 +5,8 @@ import com.microsoft.playwright.options.AriaRole;
 import com.microsoft.playwright.options.LoadState;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.*;
+
+import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
@@ -167,7 +169,7 @@ public class PlayWrightAssertionsTest {
                 page.navigate("https://practicesoftwaretesting.com/auth/login");
                 page.waitForLoadState(LoadState.NETWORKIDLE);
 
-                // Check if validation errors are visible on mandatory fields
+                // Check if validation errors are visible for mandatory fields
                 page.getByTestId("login-submit").click();
                 assertThat(page.getByTestId("email-error")).isVisible();
                 assertThat(page.getByTestId("password-error")).isVisible();
@@ -198,6 +200,10 @@ public class PlayWrightAssertionsTest {
 
                 // Check if validation errors are visible on mandatory fields
                 page.getByTestId("register-submit").click();
+                page.screenshot(new Page.ScreenshotOptions()
+                .setPath(Paths.get("screenshot.png"))
+                .setFullPage(true));
+                
                 assertThat(page.getByTestId("first-name-error")).isVisible();
                 assertThat(page.getByTestId("last-name-error")).isVisible();
                 assertThat(page.getByTestId("dob-error")).isVisible();
@@ -212,7 +218,7 @@ public class PlayWrightAssertionsTest {
 
                 
                 assertThat(page.getByTestId("first-name-error")).hasText("First name is required");
-                //assertThat(page.getByTestId("last-name-error")).hasText("Last name is required");
+                assertThat(page.getByTestId("last-name-error")).hasText("Last name is required");
                 assertThat(page.getByTestId("dob-error")).hasText("Date of Birth is required");
                 assertThat(page.getByTestId("street-error")).hasText("Street is required");
                 assertThat(page.getByTestId("postal_code-error")).hasText("Postcode is required");

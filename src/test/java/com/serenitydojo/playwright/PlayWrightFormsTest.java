@@ -76,7 +76,6 @@ public class PlayWrightFormsTest {
             var subjectField = page.getByLabel("Subject");
             var sendButton = page.getByText("Send");
 
-            
             //fill in the field values
 
             firstNameField.fill("Sarah Jane");
